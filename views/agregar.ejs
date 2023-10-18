@@ -1,0 +1,35 @@
+<%- include('./partials/header') %>
+<section id="contact" style="height: 77vh;">
+<div class="container wow fadeInUp">
+    <div class="row">
+    <div class="col-md-12">
+        <h3 class="section-title">Agregar</h3>
+        <div class="section-title-divider"></div>
+        <p class="section-description">Ingrese los datos</p>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-6 col-md-push-3">
+        <div class="form">
+        <div id="sendmessage">Your message has been sent. Thank you!</div>
+        <div id="errormessage"></div>
+        <form action="/" method="post" class="contactForm">
+            <div class="form-group">
+            <input required type="text" name="nombre" class="form-control" placeholder="Nombre"/>
+            </div>
+            <div class="form-group">
+            <input required type="text" name="descripcion" class="form-control" placeholder="Descripcion"/>
+            </div>
+            <div class="form-group">
+            <input required type="text" name="imagen" class="form-control" placeholder="Imagen"/>
+            </div>
+            <div class="text-center"><button type="submit">Añadir</button></div>
+        </form>
+        </div>
+    </div>
+
+    </div>
+</div>
+</section>
+<%- include('./partials/footer') %>

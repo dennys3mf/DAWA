@@ -1,0 +1,35 @@
+<%- include('./partials/header') %>
+  <section id="portfolio">
+    <div class="container wow fadeInUp">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="section-title">Universidades</h3>
+          <div class="section-title-divider"></div>
+          <p class="section-description">Lista de universidades</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <% arrUniversidades.forEach(function(u) { %>
+        <div class="col-md-3 with-border">
+          <div class="portfolio-item" style="background-image: url('<%= u.imagen %>');  background-size: contain;">
+            <div class="details">
+              <h4><%= u.nombre%></h4>
+              <span><%= u.descripcion %></span>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+        
+      </div>
+    </div>
+  </section>
+<%- include('./partials/footer') %>
+
+
+
+
+
+  
+
+  
