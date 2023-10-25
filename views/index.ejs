@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Sitio Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl text-white font-semibold">Mi Sitio Web</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-white hover:underline">Inicio</a></li>
+                    <li><a href="#" class="text-white hover:underline">Acerca de</a></li>
+                    <li><a href="#" class="text-white hover:underline">Servicios</a></li>
+                    <li><a href="#" class="text-white hover:underline">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container mx-auto mt-5">
+        <!-- Contenido principal de tu página -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Inicio de formulario -->
+            <div class="bg-transparent rounded border border-2 border-dark p-8">
+                <h1 class="text-center text-3xl font-bold mb-4">Usuarios</h1>
+                <form action="/users" method="POST">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold">Nombre:</label>
+                        <input type="text" id="name" name="name" value="<%= datos.name %>"
+                            class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300 input-transparent">
+                        <% errors.forEach((error) => { %>
+                            <% if (error.path == 'name') { %>
+                                <p class="text-red-500 error italic"><%= error.msg %></p>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-semibold">Email:</label>
+                        <input type="text" id="email" name="email" value="<%= datos.email %>"
+                            class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300 input-transparent">
+                        <% errors.forEach((error) => { %>
+                            <% if (error.path == 'email') { %>
+                                <p class="text-red-500 error italic"><%= error.msg %></p>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700 font-semibold">Contraseña:</label>
+                        <input type="password" id="password" name="password"
+                            class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300 input-transparent">
+                        <% errors.forEach((error) => { %>
+                            <% if (error.path == 'password') { %>
+                                <p class="text-red-500 error italic"><%= error.msg %></p>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">Crear Usuario</button>
+                </form>
+            </div>
+            <!-- Fin del formulario -->
+
+            <!-- Listado de Usuarios -->
+            <div class="col-span-2">
+                <h1 class="text-2xl font-bold mb-4">Lista de Usuarios</h1>
+                <table id="example" class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user) => { %>
+                            <tr class="bg-white">
+                                <td class="px-4 py-2"><%= user.name %></td>
+                                <td class="px-4 py-2"><%= user.email %></td>
+                                <td class="px-4 py-2"><a href="/users/edit/<%= user._id %>"
+                                        class="bg-green-500 hover:bg-green-700 text-white px-2 py-1 rounded focus:outline-none focus:ring focus:ring-green-300">Editar</a></td>
+                                <td class="px-4 py-2">
+                                    <button
+                                        class="bg-red-500 hover:bg-red-700 text-white px-2 py-1 rounded focus:outline-none focus:ring focus:ring-red-300"
+                                        @click="confirmDelete('<%= user._id %>')"
+                                    >
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="staticBackdrop<%= user._id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Eliminar</b></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label class="col-form-label">Desea eliminar a <%= user.name %></label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+                                            <a href="/users/delete/<%= user._id %>" type="submit" class="btn btn-danger">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Fin del listado de Usuarios -->
+        </div>
+    </div>
+    <!-- Fin de contenido principal -->
+
+    <!-- Footer u otras secciones de tu página -->
+
+    <script src="../public/js/script.js"></script>
+    <script>
+        function confirmDelete(userId) {
+            if (confirm("¿Estás seguro de que deseas eliminar a este usuario?")) {
+                window.location.href = `/users/delete/${userId}`;
+            }
+        }
+    </script>
+</body>
+</html>
