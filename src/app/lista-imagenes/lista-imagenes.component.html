@@ -1,0 +1,16 @@
+<div class="container">
+    <h1 class="text-center">Lista de Imágenes</h1>
+    
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let imagen of imagenes">
+        <div class="card h-100"> <!-- Se agrega la clase h-100 para asegurar la misma altura -->
+          <img [src]="imagen.url" class="card-img-top" alt="..." style="object-fit: cover; height: 200px;"> <!-- Añadido estilo para controlar el tamaño -->
+          <div class="card-body">
+            <h5 class="card-title">{{ imagen.titulo }}</h5>
+            <p class="card-text">{{ imagen.descripcion }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
