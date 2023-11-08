@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <div class="container">
+  <h1>TASKS</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <app-add-task (taskAdded)="addTask($event)"></app-add-task>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <app-task-filter (filteringTasks)="applyingFilter($event)"></app-task-filter>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <app-task-list [tasks]="tasks" (taskChangeState)="changeTaskState($event)"></app-task-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
