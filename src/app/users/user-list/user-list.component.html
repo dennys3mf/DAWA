@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center" 
+  *ngFor="let user of users; let i = index">
+    {{ user.id }} - {{ user.name }}
+    <button class="btn btn-success" [routerLink]="['/users', i]">Ver</button>
+  </li>
+</ul>

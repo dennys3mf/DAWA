@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let post of posts; let i = index">
+      <a class="d-flex justify-content-between align-items-center" href="/posts/{{i}}">
+        <span class="badge badge-primary">{{ post.id }}</span>
+        <span>{{ post.comment }}</span>
+      </a>
+    </li>
+  </ul>
+  

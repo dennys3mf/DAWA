@@ -1,0 +1,27 @@
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="card bg-light shadow">
+      <nav class="navbar navbar-expand-md navbar-light bg-light p-4">
+        <a class="navbar-brand" routerLink="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/users">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/posts">Posts</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="card-body py-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  
