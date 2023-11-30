@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2>Canciones</h2>
+
+  <!-- Formulario para crear/editar un item -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="titulo">Titulo:</label>
+      <input type="text" class="form-control" formControlName="titulo" required>
+      <div *ngIf="form.controls['titulo'].invalid && form.controls['titulo'].touched" 
+      class="alert alert-danger" role="alert">
+        El titulo es requerido y solo puede contener letras y números.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="artista">Artista:</label>
+      <input type="text" class="form-control" formControlName="artista" required>
+      <div *ngIf="form.controls['artista'].invalid && form.controls['artista'].touched" 
+      class="alert alert-danger" role="alert">
+        El artista es requerido y solo puede contener letras y números.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="genero">Genero:</label>
+      <input type="text" class="form-control" formControlName="genero" required>
+      <div *ngIf="form.controls['genero'].invalid && form.controls['genero'].touched" 
+      class="alert alert-danger" role="alert">
+        El genero es requerido y solo puede contener letras y números.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="duracion">Duración:</label>
+      <input type="text" class="form-control" formControlName="duracion" required>
+      <div *ngIf="form.controls['duracion'].invalid && form.controls['duracion'].touched"  
+      class="alert alert-danger" role="alert">
+        La duración es requerida y debe tener el formato MM:SS.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="tempo">Tempo:</label>
+      <input type="number" class="form-control" formControlName="tempo" required>
+      <div *ngIf="form.controls['tempo'].invalid && form.controls['tempo'].touched"  
+      class="alert alert-danger" role="alert">
+        El tempo es requerido y debe estar dentro del rango establecido.
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Guardar</button>
+  </form>
+
+  <hr />
+
+  <!-- Lista de items -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Titulo</th>
+        <th>Artista</th>
+        <th>Genero</th>
+        <th>Duración</th>
+        <th>Tempo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let song of songs">
+        <td>{{ song.titulo }}</td>
+        <td>{{ song.artista }}</td>
+        <td>{{ song.genero }}</td>
+        <td>{{ song.duracion }}</td>
+        <td>{{ song.tempo }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="editItem(song._id)">
+            Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteItem(song._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
