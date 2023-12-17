@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+      <header id="header" class="col-md-12 d-md-block bg-light header">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-3 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+        </div>
+      </header>
+
+      <main id="main" class="col-lg-12 px-md-4">
+        <div class="row mt-5">
+          <div *ngFor="let language of languages" class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <img [src]="language.image" class="card-img-top" alt="{{ language.name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ language.name }}</h5>
+                <p class="card-text">{{ language.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  

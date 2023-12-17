@@ -1,0 +1,68 @@
+<div class="container d-flex align-items-center justify-content-center vh-100">
+  <div
+    class="d-flex align-items-center justify-content-center border p-3 rounded shadow-sm"
+  >
+    <div class="left-section text-center">
+      <img
+        src="https://lh3.googleusercontent.com/ne9XCalEST12EdKtVv3j-qKpbP0xhuMFdYcHrW7dTxi_SfR94r208oprzvA30aOlQ1hEgkD_2GDGzel4jyZeMOMLX8c4DqA2GbYOYwQFASnS8_CBbA=w1400-rw"
+        alt="Imagen"
+        class="img-fluid mb-1"
+      />
+      <h2 class="text-white">DESARROLLO DE APLICACIONES WEB AVANZADO</h2>
+    </div>
+
+    <div class="right-section border p-4 rounded shadow-sm">
+      <h1 class="text-center">REGISTRARSE</h1>
+      <form (ngSubmit)="register()" class="mt-3">
+        <div class="mb-3">
+          <label for="username">Username:</label>
+          <input
+            [(ngModel)]="registerData.username"
+            name="username"
+            type="text"
+            class="form-control"
+            id="username"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password">Password:</label>
+          <input
+            [(ngModel)]="registerData.password"
+            name="password"
+            type="password"
+            class="form-control"
+            id="password"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input
+            [(ngModel)]="registerData.confirmPassword"
+            name="confirmPassword"
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            required
+          />
+        </div>
+
+        <div *ngIf="successMessage" class="alert alert-success" role="alert">
+          {{ successMessage }}
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div class="register-login">
+          <button type="submit" class="btn btn-primary">Register</button>
+          <p class="mt-3 text-center">
+            ¿Ya tienes una cuenta?
+            <a routerLink="/login">Inicia sesión aquí</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
